@@ -1,0 +1,22 @@
+name: format
+
+on: [push, pull_request]
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup Environment
+        uses: actions/checkout@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v2.5.1
+        with:
+          node-version: 16
+
+      - name: Installing dependencies
+        run: npm install
+
+      - name: Check formatting
+        run: npm run format
