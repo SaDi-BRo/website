@@ -1,6 +1,12 @@
 {
-  "name": "portfolio_nextjs",
+  "name": "portfolio",
+  "description": "portfolio website",
   "version": "0.1.0",
+  "author": {
+    "name": "Sayidulloh Abbasov",
+    "email": "sayidullohabbasov0909@gmail.com",
+    "url": "https://github.com/sad1go0"
+  },
   "private": true,
   "scripts": {
     "dev": "next dev",
