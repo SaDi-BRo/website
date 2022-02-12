@@ -12,7 +12,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build && next export",
-    "start": "next start"
+    "start": "next start",
+    "lint": "eslint ./",
+    "format": "prettier -c ./"
   },
   "repository": {
     "type": "git",
