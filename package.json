@@ -8,7 +8,6 @@
     "url": "https://github.com/sad1go0"
   },
   "private": true,
-  "prettier": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build && next export",
