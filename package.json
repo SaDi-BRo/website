@@ -13,6 +13,10 @@
     "build": "next build && next export",
     "start": "next start"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sad1go0/portfolio-website.git"
+  },
   "dependencies": {
     "next": "10.2.3",
     "react": "17.0.2",
