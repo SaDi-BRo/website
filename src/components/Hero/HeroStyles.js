@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const LeftSection = styled.div`
+const LeftSection = styled.div`
   width: 100%;
   @media ${props => props.theme.breakpoints.sm} {
     width: 80%;
@@ -17,3 +17,5 @@ export const LeftSection = styled.div`
     margin: 0 auto;
   }
 `;
+
+export default LeftSection;

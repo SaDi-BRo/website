@@ -7,19 +7,19 @@ import Timeline from '../components/TimeLine/TimeLine';
 import { Layout } from '../layout/Layout';
 import { Section } from '../styles/GlobalComponents';
 
-const Home = () => {
+function Home() {
   return (
     <Layout>
-      {/* <Section grid> */}
-      <Hero />
-      {/* <BgAnimation /> */}
-      {/* </Section> */}
+      <Section grid>
+        <Hero />
+        <BgAnimation />
+      </Section>
       <Projects />
       <Technologies />
       <Timeline />
       <Acomplishments />
     </Layout>
   );
-};
+}
 
 export default Home;
