@@ -37,19 +37,20 @@ function Navbar() {
         </li>
       </ul>
 
-      <div onClick={handleClick} className="md:hidden z-10">
-        {!nav ? <FaBars /> : <FaTimes />}
+      <div onClick={handleClick} className="md:hidden">
+        <FaBars />
       </div>
 
       <ul
-        className={
-          !nav
-            ? 'hidden'
-            : 'absolute top-0 left-0 w-full h-screen bg-[#0a192f] flex flex-col justify-center items-center'
-        }
+        className={`absolute top-0 ${
+          !nav ? 'left-[-100%]' : 'left-0'
+        } w-full h-screen bg-[#0a192f] flex flex-col justify-center items-center ease-in-out duration-500`}
       >
+        <h1 className="absolute top-4 left-4 cursor-pointer brand text-5xl font-bold select-none">
+          SaDi
+        </h1>
         <li className="py-6 text-4xl">
-          <Link onClick={handleClick} to="home">
+          <Link onClick={handleClick} to="/">
             Home
           </Link>
         </li>
@@ -73,6 +74,10 @@ function Navbar() {
             Contact
           </Link>
         </li>
+
+        <div onClick={handleClick} className="md:hidden absolute top-8 right-4">
+          <FaTimes />
+        </div>
       </ul>
 
       <div className="hidden md:flex fixed flex-col top-[35%] left-0">
