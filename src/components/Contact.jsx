@@ -1,6 +1,10 @@
 import React from 'react';
+import env from 'react-dotenv';
 
 function Contact() {
+  let action = {};
+  action['action'] = env.GETFORM_LINK;
+
   return (
     <div
       name="contact"
@@ -8,7 +12,7 @@ function Contact() {
     >
       <form
         method="POST"
-        action="https://getform.io/f/eae033ab-4929-48bc-8998-c3132a29900b"
+        {...action}
         className="flex flex-col max-w-[600px] w-full"
       >
         <div className="pb-8">
@@ -16,7 +20,7 @@ function Contact() {
             Contact
           </p>
           <p className="text-gray-300 py-4">
-            // Sumbit the form below or shoot me an email - myemail@gmail.com
+            // Submit the form below or shoot me an email - myemail@gmail.com
           </p>
         </div>
         <input
