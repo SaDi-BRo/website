@@ -27,6 +27,9 @@ function Navbar() {
           <Link to="about">About</Link>
         </li>
         <li className="px-4 cursor-pointer">
+          <a href="https://blog-red-theta-40.vercel.app/">Blog</a>
+        </li>
+        <li className="px-4 cursor-pointer">
           <Link to="skills">Skills</Link>
         </li>
         <li className="px-4 cursor-pointer">
@@ -58,6 +61,9 @@ function Navbar() {
           <Link onClick={handleClick} to="about">
             About
           </Link>
+        </li>
+        <li className="py-6 text-4xl">
+          <a href="https://blog-red-theta-40.vercel.app/">Blog</a>
         </li>
         <li className="py-6 text-4xl">
           <Link onClick={handleClick} to="skills">
