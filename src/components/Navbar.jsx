@@ -1,11 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaBars, FaTimes, FaGithub, FaLinkedin } from 'react-icons/fa';
 import { HiOutlineMail } from 'react-icons/hi';
 import { BsFillPersonLinesFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 function Navbar() {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [nav, setNav] = useState(false);
+
+  useEffect(() => {
+    const mouseMove = (e) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+
+    window.addEventListener('mousemove', mouseMove);
+
+    return () => {
+      window.removeEventListener('mousemove', mouseMove);
+    };
+  }, []);
+
+  const variants = {
+    default: {
+      x: mousePosition.x,
+      y: mousePosition.y,
+    },
+  };
 
   function handleClick() {
     setNav(!nav);
@@ -13,6 +34,11 @@ function Navbar() {
 
   return (
     <div className="fixed w-full h-[80px] flex justify-between items-center px-4 bg-[#0a192f] text-gray-300">
+      <motion.div
+        className="bg-pink-600 w-[32px] h-[32px] rounded-full fixed top-0 left-0"
+        variants={variants}
+        animate="default"
+      />
       <div>
         <h1 className="px-4 cursor-pointer brand text-5xl font-bold select-none">
           SaDi
