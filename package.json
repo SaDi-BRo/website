@@ -6,8 +6,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "setup": "node ./lib/setup.mjs"
+    "start": "next start"
   },
   "keywords": [
     "next.js",
