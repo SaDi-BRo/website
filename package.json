@@ -1,11 +1,26 @@
 {
-  "private": true,
+  "name": "website",
+  "version": "1.0.0",
+  "displayName": "portfolio",
+  "description": "Personal website, which has been built by Next.js",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "setup": "node ./lib/setup.mjs"
   },
+  "keywords": [
+    "next.js",
+    "typescript",
+    "portfolio",
+    "tailwindcss"
+  ],
+  "author": {
+    "name": "SaDi",
+    "email": "isadi@email.com",
+    "url": "https://isadi.uz"
+  },
+  "license": "MIT",
   "dependencies": {
     "@vercel/edge-config": "^0.1.1",
     "clsx": "^1.2.1",
