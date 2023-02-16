@@ -1,6 +1,5 @@
 'use client';
 
-import clsx from 'clsx';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
@@ -136,13 +135,9 @@ export default function Navbar() {
                 <Link
                   key={path}
                   href={path}
-                  className={clsx(
-                    'transition-all hover:text-neutral-800 dark:hover:text-neutral-200 py-[5px] px-[10px]',
-                    {
-                      'text-neutral-500': !isActive,
-                      'font-bold': isActive,
-                    }
-                  )}
+                  className={`transition-all hover:text-neutral-800 dark:hover:text-neutral-200 py-[5px] px-[10px] ${
+                    !isActive && 'text-neutral-500'
+                  } ${isActive && 'font-bold'}`}
                 >
                   {name}
                 </Link>
