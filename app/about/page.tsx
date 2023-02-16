@@ -1,11 +1,7 @@
-import {
-  GitHubIcon,
-  YoutubeIcon,
-  ArrowIcon,
-  TwitterIcon,
-} from 'components/icons';
+import { Metadata } from 'next';
+import { GitHubIcon, ArrowIcon, TwitterIcon } from 'components/icons';
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'About',
   description: 'VP of Developer Experience in my life.',
 };
