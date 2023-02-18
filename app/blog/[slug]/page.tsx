@@ -4,21 +4,10 @@ import { useMDXComponent } from 'next-contentlayer/hooks';
 import { format, parseISO } from 'date-fns';
 import { allPosts } from 'contentlayer/generated';
 
-export async function getStaticPaths() {
-  const paths = allPosts.map(post => post.url);
-  return {
-    paths,
-    fallback: false,
-  };
-}
-
-export async function getStaticProps({ params }) {
-  const post = allPosts.find(post => post._raw.flattenedPath === params.slug);
-  return {
-    props: {
-      post,
-    },
-  };
+export async function generateStaticParams() {
+  return allPosts.map(post => ({
+    slug: post.slug,
+  }));
 }
 
 export default function PostLayout({ params }) {

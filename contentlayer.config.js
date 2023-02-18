@@ -21,6 +21,10 @@ export const Post = defineDocumentType(() => ({
       type: 'string',
       resolve: post => `/blog/${post._raw.flattenedPath}`,
     },
+    slug: {
+      type: 'string',
+      resolve: doc => doc._raw.flattenedPath,
+    },
   },
 }));
 
