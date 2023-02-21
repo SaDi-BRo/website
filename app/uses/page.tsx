@@ -1,6 +1,4 @@
-import { Metadata } from 'next';
-
-export const metadata: Metadata = {
+export const metadata = {
   title: 'Uses',
   description:
     "Here's what tech I'm currently using for coding, videos, and music.",
@@ -28,7 +26,7 @@ export default function UsesPage() {
         <ul>
           <li>
             Editor: VSCode (
-            <a href="https://gist.github.com/SaDi-BRo/e7883ab35d900b8cbb684ac77e7c4703">
+            <a href="https://gist.github.com/leerob/e7883ab35d900b8cbb684ac77e7c4703">
               Settings / Extensions
             </a>
             )
