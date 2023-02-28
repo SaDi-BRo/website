@@ -18,8 +18,8 @@ const navItems = {
     y: 35,
     w: '65px',
   },
-  '/blog': {
-    name: 'blog',
+  '/contact': {
+    name: 'contact',
     x: 127,
     y: 69,
     w: '56px',
@@ -28,6 +28,12 @@ const navItems = {
     name: 'uses',
     x: 182,
     y: 104,
+    w: '100px',
+  },
+  '/spotify': {
+    name: 'spotify',
+    x: 237,
+    y: 137,
     w: '100px',
   },
 };
