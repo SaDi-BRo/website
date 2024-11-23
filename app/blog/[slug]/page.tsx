@@ -1,44 +1,101 @@
-import { allPosts } from 'contentlayer/generated';
-import { useMDXComponent } from 'next-contentlayer/hooks';
-import { Metadata } from 'next';
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { CustomMDX } from "app/components/mdx";
+import { formatDate, getBlogPosts } from "app/lib/posts";
+import { metaData } from "app/config";
+
+export async function generateStaticParams() {
+  let posts = getBlogPosts();
+
+  return posts.map((post) => ({
+    slug: post.slug,
+  }));
+}
 
 export async function generateMetadata({
   params,
-}: {
-  params: any;
 }): Promise<Metadata | undefined> {
-  const post = allPosts.find(post => post._raw.flattenedPath === params.slug);
+  let post = getBlogPosts().find((post) => post.slug === params.slug);
   if (!post) {
     return;
   }
 
-  const { title } = post;
+  let {
+    title,
+    publishedAt: publishedTime,
+    summary: description,
+    image,
+  } = post.metadata;
+  let ogImage = image
+    ? image
+    : `${metaData.baseUrl}/og?title=${encodeURIComponent(title)}`;
 
   return {
     title,
+    description,
+    openGraph: {
+      title,
+      description,
+      type: "article",
+      publishedTime,
+      url: `${metaData.baseUrl}/blog/${post.slug}`,
+      images: [
+        {
+          url: ogImage,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [ogImage],
+    },
   };
 }
 
-const PostLayout = ({ params }: { params: any }) => {
-  const post = allPosts.find(post => post._raw.flattenedPath === params.slug);
-  const Component = useMDXComponent(post!.body.code);
+export default function Blog({ params }) {
+  let post = getBlogPosts().find((post) => post.slug === params.slug);
+
+  if (!post) {
+    notFound();
+  }
 
   return (
-    <>
-      <section>
-        <h1 className="font-bold text-3xl font-serif max-w-[650px]">
-          {post!.title}
-        </h1>
-        <div className="grid grid-cols-[auto_1fr_auto] items-center mt-4 mb-8 font-mono text-sm max-w-[650px]">
-          <div className="bg-neutral-100 dark:bg-neutral-800 rounded-md px-2 py-1 tracking-tighter">
-            {post!.date}
-          </div>
-          <div className="h-[0.2em] bg-neutral-50 dark:bg-neutral-800 mx-2" />
-        </div>
-        <Component />
-      </section>
-    </>
+    <section>
+      <script
+        type="application/ld+json"
+        suppressHydrationWarning
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            headline: post.metadata.title,
+            datePublished: post.metadata.publishedAt,
+            dateModified: post.metadata.publishedAt,
+            description: post.metadata.summary,
+            image: post.metadata.image
+              ? `${metaData.baseUrl}${post.metadata.image}`
+              : `/og?title=${encodeURIComponent(post.metadata.title)}`,
+            url: `${metaData.baseUrl}/blog/${post.slug}`,
+            author: {
+              "@type": "Person",
+              name: metaData.name,
+            },
+          }),
+        }}
+      />
+      <h1 className="title mb-3 font-medium text-2xl tracking-tight">
+        {post.metadata.title}
+      </h1>
+      <div className="flex justify-between items-center mt-2 mb-8 text-medium">
+        <p className="text-sm text-neutral-600 dark:text-neutral-400">
+          {formatDate(post.metadata.publishedAt)}
+        </p>
+      </div>
+      <article className="prose prose-quoteless prose-neutral dark:prose-invert">
+        <CustomMDX source={post.content} />
+      </article>
+    </section>
   );
-};
-
-export default PostLayout;
+}

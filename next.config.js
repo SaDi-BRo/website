@@ -1,18 +1,39 @@
-const { withContentlayer } = require('next-contentlayer');
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    appDir: true,
-  },
-  images: {
-    remotePatterns: [
+  reactStrictMode: true,
+  swcMinify: true,
+  async rewrites() {
+    return [
       {
-        protocol: 'https',
-        hostname: 'i.scdn.co',
+        source: "/rss.xml",
+        destination: "/feed/rss.xml",
       },
-    ],
+      {
+        source: "/atom.xml",
+        destination: "/feed/atom.xml",
+      },
+      {
+        source: "/feed.json",
+        destination: "/feed/feed.json",
+      },
+      {
+        source: "/rss",
+        destination: "/feed/rss.xml",
+      },
+      {
+        source: "/feed",
+        destination: "/feed/rss.xml",
+      },
+      {
+        source: "/atom",
+        destination: "/feed/atom.xml",
+      },
+      {
+        source: "/json",
+        destination: "/feed/feed.json",
+      },
+    ];
   },
 };
 
-module.exports = withContentlayer(nextConfig);
+module.exports = nextConfig;
